@@ -1,10 +1,7 @@
 language: java
 script: mvn install
 deploy:
-   edge: true
-   provider: cloudfoundry
-   username: vksethi77@gmail.com
-   password: junk1234
-   api: https://api.run.pivotal.io
-   organization: vksethi77-org
-   space: development
+  provider: heroku
+  api_key:
+    secure: "0590e4f6-2b9b-43cc-8f95-1fb5301cc72f"
+    app: trilogy
