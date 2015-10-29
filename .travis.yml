@@ -3,8 +3,8 @@ script: mvn install
 deploy:
    edge: true
    provider: cloudfoundry
-   username: gr4frendz@gmail.com
-   password: rama5309
+   username: vksethi77@gmail.com
+   password: junk1234
    api: https://api.run.pivotal.io
-   organization: Vz-hack-org
-   space: rmz-folks
+   organization: vksethi77-org
+   space: development
