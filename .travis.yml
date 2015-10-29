@@ -8,3 +8,6 @@ deploy:
    api: https://api.run.pivotal.io
    organization: vksethi77-org
    space: development
+---
+applications:
+- name: trilogy
