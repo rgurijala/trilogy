@@ -3,5 +3,5 @@ script: mvn install
 deploy:
   provider: heroku
   api_key:
-    secure: 0590e4f6-2b9b-43cc-8f95-1fb5301cc72f
-    app: trilogy
+    secure: "0590e4f6-2b9b-43cc-8f95-1fb5301cc72f"
+    app: trilogyvz
