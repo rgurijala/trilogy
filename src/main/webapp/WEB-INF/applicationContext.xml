@@ -1,31 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-  <camelContext xmlns="http://camel.apache.org/schema/spring">
-    <route id="helloRoute">
-      <!-- incoming requests from the servlet is routed -->
-      <from uri="servlet:///hello"/>
-      <choice>
-        <when>
-          <!-- is there a header with the key name? -->
-          <header>name</header>
-          <!-- yes so return back a message to the user -->
-          <transform>
-             <simple>Hi I am ${sysenv.HOSTNAME}. Hello ${header.name} how are you today?</simple>
-          </transform>
-        </when>
-        <otherwise>
-          <!-- if no name parameter then output a syntax to the user -->
-          <transform>
-            <constant>Add a name parameter to uri, eg ?name=foo</constant>
-          </transform>
-        </otherwise>
-      </choice>
-    </route>
-  </camelContext>
+	<bean id="fileProcessor" class="trilogy.processor.FileProcessor" />
+
+	<!-- incoming requests from the servlet is routed --><!-- is there a header with the key name? --><!-- yes so return back a message to the user --><!-- if no name parameter then output a syntax to the user -->
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+		<route id="testcaseSequenceNumber">
+			<from uri="servlet:///testcaseSequenceNumberServlet" />
+			<choice>
+				<when>
+					<header>testcaseSequenceNumber</header>
+					<transform>
+						<simple>filename=${header.testcaseSequenceNumber}.xml</simple>
+					</transform>
+					<process ref="fileProcessor" />
+					<to uri="direct:fileSplitter" />
+				</when>
+				<otherwise>
+					<transform>
+						<constant>Add a testcaseSequenceNumber parameter to uri, eg ?testcaseSequenceNumber=1</constant>
+					</transform>
+				</otherwise>
+			</choice>
+		</route>
+		<route>
+			<from uri="direct:fileSplitter" />
+			<choice>
+				<when>
+					<xpath>/order/voice</xpath>
+					<log message="voice order" />
+					<to uri="direct:voice" />
+				</when>
+			</choice>
+			<choice>
+				<when>
+					<xpath>/order/data</xpath>
+					<log message="data order" />
+					<to uri="direct:data" />
+				</when>
+			</choice>
+			<choice>
+				<when>
+					<xpath>/order/video</xpath>
+					<log message="video order" />
+					<to uri="direct:video" />
+				</when>
+			</choice>
+		</route>
+		<route>
+			<from uri="direct:voice" />
+			<choice>
+				<when>
+					<xpath>/order/voice/btn</xpath>
+					<log message="voice order" />
+					<to uri="direct:duedate" />
+				</when>
+				<otherwise>
+					<transform>
+						<constant>&lt;BTN&gt; Voice Order - BTN Tag Missing&lt;/BTN&gt;</constant>
+					</transform>
+
+				</otherwise>
+			</choice>
+			<onException>
+				<exception>java.lang.Exception</exception>
+				<handled>
+					<constant>true</constant>
+				</handled>
+				<log message="caught ${exception}" />
+				<transform>
+					<constant>Exception : BTN Tag Missing</constant>
+				</transform>
+			</onException>
+		</route>
+		<route>
+			<from uri="direct:data" />
+			<log message="data order app" />
+			<to uri="direct:duedate" />
+		</route>
+		<route>
+			<from uri="direct:video" />
+			<log message="video order app" />
+			<to uri="direct:duedate" />
+		</route>
+		<route>
+			<from uri="direct:duedate" />
+			<log message="duedate" />
+		</route>
+	</camelContext>
 
 </beans>
