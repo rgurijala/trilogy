@@ -1,1 +1,1 @@
-web: java -jar target/dependency/jetty-runner.jar target/trilogy.web-0.0.1-SNAPSHOT.war
+web: java -Dserver.port = $PORT -jar target/trilogy.web-0.0.1-SNAPSHOT.war
