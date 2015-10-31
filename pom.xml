@@ -98,18 +98,7 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>io.hawt</groupId>
-				<artifactId>hawtio-default-offline</artifactId>
-				<version>1.4.56</version>
-				
-				<configuration>
-					<type>war</type>
-					<logClasspath>true</logClasspath>
-					
-				</configuration>
-				
-			</plugin>
+			
 
 <!--  Created by Rama for Heroku ### Start -->
 			 <plugin>
@@ -121,6 +110,12 @@
 			          <phase>package</phase>
 			          <goals><goal>copy</goal></goals>
 			          <configuration>
+			          	<contextHandlers>           
+				            <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+				              <war>../hawtio.war</war>
+				              <contextPath>/hawtio</contextPath>
+				            </contextHandler>
+				         </contextHandlers>
 			            <artifactItems>
 			              <artifactItem>
 			                <groupId>org.eclipse.jetty</groupId>
