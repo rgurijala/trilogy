@@ -74,7 +74,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
 		</dependency>
-	
+		<dependency>
+	      <groupId>io.hawt</groupId>
+	      <artifactId>hawtio.war</artifactId>
+	      <version>1.4.56</version>
+	      <type>war</type>
+	    </dependency>
 	</dependencies>
 
 	<build>
