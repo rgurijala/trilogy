@@ -102,11 +102,12 @@
 				<groupId>io.hawt</groupId>
 				<artifactId>hawtio-default-offline</artifactId>
 				<version>1.4.56</version>
+				<type>war</type>
 				<configuration>
 					<logClasspath>true</logClasspath>
 					
 				</configuration>
-				<type>war</type>
+				
 			</plugin>
 
 <!--  Created by Rama for Heroku ### Start -->
