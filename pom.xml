@@ -138,11 +138,7 @@
 					<webAppConfig>
 						<contextPath>/${project.artifactId}</contextPath>
 					</webAppConfig>
-					<contextHandlers>           
-				            <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-				              <war>${basedir}/hawtio.war</war>
-				              <contextPath>/hawtio</contextPath>
-				            </contextHandler>
+					
 					<systemProperties>
 						
 						<systemProperty>
@@ -151,6 +147,13 @@
 						</systemProperty>
 					</systemProperties>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<contextHandlers>           
+		            <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+		              <war>${basedir}/hawtio.war</war>
+		              <contextPath>/hawtio</contextPath>
+		            </contextHandler>
+		            
+		          </contextHandlers>
 				</configuration>
 			</plugin>
 
