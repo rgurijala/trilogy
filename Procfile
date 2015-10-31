@@ -1,1 +1,1 @@
-web: java -jar bootstrap.jar --port $PORT --jetty -war target/*.war 
+web: java $JAVA_OPTS -jar target/dependency/jetty-runner.jar --port $PORT target/*.war 
