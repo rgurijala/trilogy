@@ -1,5 +1,6 @@
 language: java
 script: mvn install
+script: mvn jetty:run
 deploy:
   provider: heroku
   app : trilogyvzw
