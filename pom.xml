@@ -106,6 +106,7 @@
 					<logClasspath>true</logClasspath>
 					
 				</configuration>
+				<type>war</type>
 			</plugin>
 
 <!--  Created by Rama for Heroku ### Start -->
