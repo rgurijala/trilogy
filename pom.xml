@@ -103,7 +103,7 @@
 				<version>1.4.56</version>
 				<configuration>
 					<logClasspath>true</logClasspath>
-					<port>8090</port>
+				<!--	<port>8090</port>-->
 				</configuration>
 			</plugin>
 
