@@ -112,7 +112,7 @@
 			          <configuration>
 			          	<contextHandlers>           
 				            <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-				              <war>../hawtio.war</war>
+				              <war>${basedir}/hawtio.war</war>
 				              <contextPath>/hawtio</contextPath>
 				            </contextHandler>
 				         </contextHandlers>
