@@ -76,7 +76,7 @@
 		</dependency>
 		<dependency>
 	            <groupId>io.hawt</groupId>
-	            <artifactId>hawtio-embedded</artifactId>
+	            <artifactId>hawtio-default-offline</artifactId>
 	            <version>1.4.56</version>
 	        </dependency>
 	</dependencies>
@@ -102,7 +102,7 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
+		<!--	<plugin>
 				<groupId>io.hawt</groupId>
 				<artifactId>hawtio-maven-plugin</artifactId>
 				<version>1.4.56</version>
@@ -110,7 +110,7 @@
 					<logClasspath>true</logClasspath>
 					<port>8090</port>
 				</configuration>
-			</plugin>
+			</plugin> -->
 
 <!--  Created by Rama for Heroku ### Start -->
 			 <plugin>
