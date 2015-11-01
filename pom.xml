@@ -74,12 +74,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
 		</dependency>
-		<dependency>
-	            <groupId>io.hawt</groupId>
-	            <artifactId>hawtio-default-offline</artifactId>
-	            <version>1.4.56</version>
-	            <type>war</type>
-	        </dependency>
 	</dependencies>
 
 	<build>
@@ -103,37 +97,16 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			
+			<plugin>
+				<groupId>io.hawt</groupId>
+				<artifactId>hawtio-maven-plugin</artifactId>
+				<version>1.4.56</version>
+				<configuration>
+					<logClasspath>true</logClasspath>
+					<port>8090</port>
+				</configuration>
+			</plugin>
 
-<!--  Created by Rama for Heroku ### Start -->
-			 <!-- <plugin>
-			      <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-dependency-plugin</artifactId>
-			      <version>2.3</version>
-			      <executions>
-			        <execution>
-			          <phase>package</phase>
-			          <goals><goal>copy</goal></goals>
-			          <configuration>
-			          	<contextHandlers>           
-				            <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-				              <war>${basedir}/hawtio.war</war>
-				              <contextPath>/hawtio</contextPath>
-				            </contextHandler>
-				         </contextHandlers>
-			            <artifactItems>
-			              <artifactItem>
-			                <groupId>org.eclipse.jetty</groupId>
-			                <artifactId>jetty-runner</artifactId>
-			                <version>9.3.3.v20150827</version>
-			                <destFileName>jetty-runner.jar</destFileName>
-			              </artifactItem>
-			            </artifactItems>
-			          </configuration>
-			        </execution>
-			       </executions>
-			    </plugin>  --> 
-<!--  Created by Rama for Heroku ### end -->
 			<!-- plugin so you can run mvn jetty:run -->
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
@@ -143,16 +116,14 @@
 					<webAppConfig>
 						<contextPath>/${project.artifactId}</contextPath>
 					</webAppConfig>
-					
 					<systemProperties>
-						
+						<!-- enable easy JMX connection to JConsole -->
 						<systemProperty>
 							<name>com.sun.management.jmxremote</name>
 							<value />
 						</systemProperty>
 					</systemProperties>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
-					
 				</configuration>
 			</plugin>
 
