@@ -1,8 +1,8 @@
 package trilogy.processor;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,11 +22,8 @@ public class FileProcessor implements Processor {
 		final Message inMessage = exchange.getIn();
 		final String header = inMessage.getHeader("testcaseSequenceNumber",
 				String.class);
-		String Filename = "D:\\Eclipse\\workspace\\trilogy\\src\\data\\"
-				+ header + ".xml";
+		String Filename = header + ".xml";
 		String res = readFile(Filename, exchange);
-		System.out.println(res);
-
 		inMessage.setBody(res);
 	}
 
@@ -34,7 +31,10 @@ public class FileProcessor implements Processor {
 			throws Exception {
 		StringBuilder stb = new StringBuilder("");
 		final Message inMessage = exchange.getIn();
-		try (BufferedReader br = new BufferedReader(new FileReader(inputPath))) {
+		// try (BufferedReader br = new BufferedReader(new
+		// FileReader(inputPath))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(this
+				.getClass().getClassLoader().getResourceAsStream(inputPath)))) {
 			String mon = "";
 			String sCurrentLine;
 			String orderNum = "";
