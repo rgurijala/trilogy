@@ -65,11 +65,11 @@ public class DBProcessor implements Processor {
 	}
 
 	public String getMon(String str) {
-		String patternString = "<MON>(.+?)</MON>";
+		String patternString = "<mon>(.+?)</mon>";
 		Pattern pattern = Pattern.compile(patternString);
 		Matcher matcher = pattern.matcher(str);
 		if (matcher.find())
-			return matcher.group(0);
+			return matcher.group(1);
 		else
 			return "";
 	}
