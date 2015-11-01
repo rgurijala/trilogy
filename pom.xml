@@ -70,29 +70,39 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--<dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			<version>5.1.6</version> </dependency> -->
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1200-jdbc41</version>
 		</dependency>
-
-
-		<dependency>
-			<groupId>io.hawt</groupId>
-			<artifactId>hawtio-default-offline</artifactId>
-			<version>1.4.56</version>
-			<type>war</type>
-			<scope>runtime</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
-		<defaultGoal>install</defaultGoal>
 
+		<defaultGoal>install</defaultGoal>
 		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/hawtio-war/</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -102,30 +112,6 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<configuration>
-					<overlays>
-						<overlay>
-							<groupId>io.hawt</groupId>
-							<artifactId>hawtio-default-offline</artifactId>
-						</overlay>
-					</overlays>
-				</configuration>
-			</plugin>
-			<!-- <plugin> <groupId>io.hawt</groupId> <artifactId>hawtio-maven-plugin</artifactId> 
-				<version>1.4.56</version> <configuration> <logClasspath>true</logClasspath> 
-				<port>8090</port> </configuration> </plugin> -->
 
 			<!-- plugin so you can run mvn jetty:run -->
 			<plugin>
