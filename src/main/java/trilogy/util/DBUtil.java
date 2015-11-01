@@ -43,7 +43,7 @@ public class DBUtil {
 	}
 
 	public static String fetchFromDB(String sql) {
-
+		String response = "";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -56,7 +56,6 @@ public class DBUtil {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				String response = "";
 
 				String lastColumn = "";
 				try {
@@ -73,19 +72,13 @@ public class DBUtil {
 							+ resultSet.getString(3) + ","
 							+ resultSet.getString(4);
 				}
-
-				// System.out.println("Response is >>>>>>>>>>>>>>>>>>>> "+
-				// response);
 			}
 
 		} catch (SQLException e) {
-			// System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
-			return null;
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return response;
 	}
 }

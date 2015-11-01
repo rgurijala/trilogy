@@ -6,7 +6,8 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 	<bean id="fileProcessor" class="trilogy.processor.FileProcessor" />
-
+	<bean id="dbProcessor" class="trilogy.processor.DBProcessor" />
+	
 	<!-- incoming requests from the servlet is routed --><!-- is there a header with the key name? --><!-- yes so return back a message to the user --><!-- if no name parameter then output a syntax to the user -->
 	<camelContext xmlns="http://camel.apache.org/schema/spring">
 		<route id="testcaseSequenceNumber">
@@ -57,13 +58,12 @@
 				<when>
 					<xpath>/order/voice/btn</xpath>
 					<log message="voice order" />
-					<to uri="direct:duedate" />
+					<to uri="direct:dbVerification" />
 				</when>
 				<otherwise>
 					<transform>
 						<constant>&lt;BTN&gt; Voice Order - BTN Tag Missing&lt;/BTN&gt;</constant>
 					</transform>
-
 				</otherwise>
 			</choice>
 			<onException>
@@ -80,16 +80,16 @@
 		<route>
 			<from uri="direct:data" />
 			<log message="data order app" />
-			<to uri="direct:duedate" />
+			<to uri="direct:dbVerification" />
 		</route>
 		<route>
 			<from uri="direct:video" />
 			<log message="video order app" />
-			<to uri="direct:duedate" />
+			<to uri="direct:dbVerification" />
 		</route>
 		<route>
-			<from uri="direct:duedate" />
-			<log message="duedate" />
+			<from uri="direct:dbVerification" />
+			<process ref="dbProcessor" />
 		</route>
 	</camelContext>
 
