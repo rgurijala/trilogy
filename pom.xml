@@ -121,7 +121,6 @@
 							<artifactId>hawtio-default-offline</artifactId>
 						</overlay>
 					</overlays>
-					<webXml>WEB-INF\web.xml</webXml>
 				</configuration>
 			</plugin>
 			<!-- <plugin> <groupId>io.hawt</groupId> <artifactId>hawtio-maven-plugin</artifactId> 
