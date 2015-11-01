@@ -80,6 +80,7 @@
 			<artifactId>hawtio-default-offline</artifactId>
 			<version>1.4.56</version>
 			<type>war</type>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
