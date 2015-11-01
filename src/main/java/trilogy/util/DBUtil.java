@@ -14,8 +14,10 @@ public class DBUtil {
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection(
-					"jdbc:postgresql://ec2-107-21-219-142.compute-1.amazonaws.com:5432/d54kp92sj98g83?currentSchema=megahackathon","pbbnglrgsfpbso","3VGLI4DZIDZGYOp4uwaU9oBbg1");
+			connection = DriverManager
+					.getConnection(
+							"jdbc:postgresql://ec2-107-21-219-142.compute-1.amazonaws.com:5432/d54kp92sj98g83?currentSchema=megahackathon",
+							"pbbnglrgsfpbso", "3VGLI4DZIDZGYOp4uwaU9oBbg1");
 			preparedStatement = connection.prepareStatement(sql);
 			int result = preparedStatement.executeUpdate();
 
@@ -35,7 +37,6 @@ public class DBUtil {
 			e.printStackTrace();
 			return false;
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;
@@ -48,8 +49,10 @@ public class DBUtil {
 		ResultSet resultSet = null;
 		try {
 			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection(
-					"jdbc:postgresql://ec2-107-21-219-142.compute-1.amazonaws.com:5432/d54kp92sj98g83?currentSchema=megahackathon","pbbnglrgsfpbso","3VGLI4DZIDZGYOp4uwaU9oBbg1");
+			connection = DriverManager
+					.getConnection(
+							"jdbc:postgresql://ec2-107-21-219-142.compute-1.amazonaws.com:5432/d54kp92sj98g83?currentSchema=megahackathon",
+							"pbbnglrgsfpbso", "3VGLI4DZIDZGYOp4uwaU9oBbg1");
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
 

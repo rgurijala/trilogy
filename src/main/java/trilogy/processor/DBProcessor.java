@@ -33,17 +33,12 @@ public class DBProcessor implements Processor {
 	}
 
 	public String verifyVoice(String tag) {
-		/*
-		 * System.out.println("select * from voice_audit_table where mon ='" +
-		 * tag + "'");
-		 */
 		if (DBUtil.fetchFromDB(
 				"select * from voice_audit_table where MASTER_ORDER_NUMBER ='"
 						+ tag + "'").length() > 1)
 			return "<Voiceorder>Success</Voiceorder>";
 		else
 			return "<Voiceorder>Failure</Voiceorder>";
-
 	}
 
 	public String verifyData(String tag) {

@@ -69,19 +69,17 @@
 			<version>2.16.0</version>
 			<scope>test</scope>
 		</dependency>
-		<!--<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-		</dependency> -->
-		
+
+		<!--<dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			<version>5.1.6</version> </dependency> -->
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1200-jdbc41</version>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>io.hawt</groupId>
 			<artifactId>hawtio-default-offline</artifactId>
@@ -112,52 +110,48 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>  
-				 <groupId>org.apache.maven.plugins</groupId>  
-				 <artifactId>maven-war-plugin</artifactId>  
-				 <version>2.1.1</version>  
-				 <configuration>  
-				   <overlays>  
-				     <overlay>  
-				       <groupId>io.hawt</groupId>
-						<artifactId>hawtio-default-offline</artifactId>  
-				     </overlay>  
-				   </overlays>  
-				 </configuration>  
-			</plugin>
-			<!-- <plugin>
-				<groupId>io.hawt</groupId>
-				<artifactId>hawtio-maven-plugin</artifactId>
-				<version>1.4.56</version>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
 				<configuration>
-					<logClasspath>true</logClasspath>
-					<port>8090</port>
+					<overlays>
+						<overlay>
+							<groupId>io.hawt</groupId>
+							<artifactId>hawtio-default-offline</artifactId>
+						</overlay>
+					</overlays>
 				</configuration>
-			</plugin> -->
+			</plugin>
+			<!-- <plugin> <groupId>io.hawt</groupId> <artifactId>hawtio-maven-plugin</artifactId> 
+				<version>1.4.56</version> <configuration> <logClasspath>true</logClasspath> 
+				<port>8090</port> </configuration> </plugin> -->
 
 			<!-- plugin so you can run mvn jetty:run -->
 			<plugin>
-			      <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-dependency-plugin</artifactId>
-			      <version>2.3</version>
-			      <executions>
-			        <execution>
-			          <phase>package</phase>
-			          <goals><goal>copy</goal></goals>
-			          <configuration>
-			          	
-			            <artifactItems>
-			              <artifactItem>
-			                <groupId>org.eclipse.jetty</groupId>
-			                <artifactId>jetty-runner</artifactId>
-			                <version>9.3.3.v20150827</version>
-			                <destFileName>jetty-runner.jar</destFileName>
-			              </artifactItem>
-			            </artifactItems>
-			          </configuration>
-			        </execution>
-			       </executions>
-			    </plugin> 
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.eclipse.jetty</groupId>
+									<artifactId>jetty-runner</artifactId>
+									<version>9.3.3.v20150827</version>
+									<destFileName>jetty-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- plugin to deploy to JBoss AS with: mvn jboss-as:deploy (you can also 
 				do redeploy/undeploy) -->

@@ -31,8 +31,6 @@ public class FileProcessor implements Processor {
 			throws Exception {
 		StringBuilder stb = new StringBuilder("");
 		final Message inMessage = exchange.getIn();
-		// try (BufferedReader br = new BufferedReader(new
-		// FileReader(inputPath))) {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(this
 				.getClass().getClassLoader().getResourceAsStream(inputPath)))) {
 			String mon = "";
