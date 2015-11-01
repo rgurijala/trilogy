@@ -13,10 +13,9 @@ public class DBUtil {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://113.128.165.64:3306/megahackathon",
-					"trilogy", "password");
+					"jdbc:postgresql://ec2-107-21-219-142.compute-1.amazonaws.com:5432/d54kp92sj98g83","pbbnglrgsfpbso","3VGLI4DZIDZGYOp4uwaU9oBbg1");
 			preparedStatement = connection.prepareStatement(sql);
 			int result = preparedStatement.executeUpdate();
 
@@ -48,10 +47,9 @@ public class DBUtil {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://113.128.165.64:3306/megahackathon",
-					"trilogy", "password");
+					"jdbc:postgresql://ec2-107-21-219-142.compute-1.amazonaws.com:5432/d54kp92sj98g83","pbbnglrgsfpbso","3VGLI4DZIDZGYOp4uwaU9oBbg1");
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
 
