@@ -116,7 +116,7 @@ public class FileProcessor implements Processor {
 	}
 
 	public String getMon(String str) {
-		String patternString = "<MON>(.+?)</MON>";
+		String patternString = "<mon>(.+?)</mon>";
 		Pattern pattern = Pattern.compile(patternString);
 		Matcher matcher = pattern.matcher(str);
 		if (matcher.find())
