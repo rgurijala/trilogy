@@ -1,0 +1,104 @@
+heroku pg:backups restore --http-proxy http://proxy.ebiz.verizon.com C:\\test.backup postgresql-convex-8615 --app trilogyvzw
+
+C:\Users\Administrator>heroku pg:credentials postgresql-convex-8615 --app trilog
+yvzw
+Connection info string:
+   "dbname=d54kp92sj98g83 host=ec2-107-21-219-142.compute-1.amazonaws.com port=5
+432 user=pbbnglrgsfpbso password=3VGLI4DZIDZGYOp4uwaU9oBbg1 sslmode=require"
+Connection URL:
+    postgres://pbbnglrgsfpbso:3VGLI4DZIDZGYOp4uwaU9oBbg1@ec2-107-21-219-142.comp
+ute-1.amazonaws.com:5432/d54kp92sj98g83
+
+C:\Users\Administrator>
+
+
+
+C:\Users\Administrator>
+heroku --http-proxy http://proxy.ebiz.verizon.com pg:push  postgres://trilogy:password@113.128.165.64:5342/test postgresql-convex-8615 --app trilogyvzw
+DL is deprecated, please use Fiddle
+ !    The local psql command could not be located
+ !    For help installing psql, see https://devcenter.heroku.com/articles/heroku
+-postgresql#local-setup
+
+C:\Users\Administrator>
+
+
+heroku pg:backups restore --http-proxy http://proxy.ebiz.verizon.com C:\\test.backup postgresql-convex-8615 --app trilogyvzw
+
+C:\Users\Administrator>heroku pg:credentials postgresql-convex-8615 --app trilog
+yvzw
+Connection info string:
+   "dbname=d54kp92sj98g83 host=ec2-107-21-219-142.compute-1.amazonaws.com port=5
+432 user=pbbnglrgsfpbso password=3VGLI4DZIDZGYOp4uwaU9oBbg1 sslmode=require"
+Connection URL:
+    postgres://pbbnglrgsfpbso:3VGLI4DZIDZGYOp4uwaU9oBbg1@ec2-107-21-219-142.comp
+ute-1.amazonaws.com:5432/d54kp92sj98g83
+
+C:\Users\Administrator>
+
+
+
+C:\Users\Administrator>
+heroku --http-proxy http://proxy.ebiz.verizon.com pg:push  postgres://trilogy:password@113.128.165.64:5342/test postgresql-convex-8615 --app trilogyvzw
+DL is deprecated, please use Fiddle
+ !    The local psql command could not be located
+ !    For help installing psql, see https://devcenter.heroku.com/articles/heroku
+-postgresql#local-setup
+
+C:\Users\Administrator>
+
+
+
+CREATE TABLE `test.duedate_audit_table` (
+  `HOSTNAME` varchar(45) DEFAULT NULL,
+  `MASTER_ORDER_NUMBER` varchar(45) DEFAULT NULL,
+  `REQUEST_STRING` varchar(1024) DEFAULT NULL,
+  `DUE_DATE` varchar(45) DEFAULT NULL,
+  `IS_SUCCESSFUL` varchar(5) DEFAULT NULL
+);
+
+
+CREATE TABLE `billing_audit_table` (
+  `HOSTNAME` varchar(45) DEFAULT NULL,
+  `MASTER_ORDER_NUMBER` varchar(45) DEFAULT NULL,
+  `REQUEST_STRING` varchar(1024) DEFAULT NULL,
+  `RESPONSE_STRING` varchar(1024) DEFAULT NULL,
+  `IS_SUCCESSFUL` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `data_audit_table` (
+  `HOSTNAME` varchar(45) DEFAULT NULL,
+  `MASTER_ORDER_NUMBER` varchar(45) DEFAULT NULL,
+  `REQUEST_STRING` varchar(1024) DEFAULT NULL,
+  `CIRCUIT_ID` varchar(45) DEFAULT NULL,
+  `IS_SUCCESSFUL` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `online_audit_table` (
+  `HOSTNAME` varchar(45) DEFAULT NULL,
+  `MASTER_ORDER_NUMBER` varchar(45) DEFAULT NULL,
+  `REQUEST_STRING` varchar(1024) DEFAULT NULL,
+  `IS_SUCCESSFUL` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `video_audit_table` (
+  `HOSTNAME` varchar(45) DEFAULT NULL,
+  `MASTER_ORDER_NUMBER` varchar(45) DEFAULT NULL,
+  `REQUEST_STRING` varchar(1024) DEFAULT NULL,
+  `VIDEO_ID` varchar(45) DEFAULT NULL,
+  `IS_SUCCESSFUL` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `voice_audit_table` (
+  `HOSTNAME` varchar(45) DEFAULT NULL,
+  `MASTER_ORDER_NUMBER` varchar(45) DEFAULT NULL,
+  `REQUEST_STRING` varchar(1024) DEFAULT NULL,
+  `VOICE_BTN` varchar(45) DEFAULT NULL,
+  `IS_SUCCESSFUL` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
