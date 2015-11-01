@@ -4,14 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class DBUtil {
 	public static boolean insertIntoDB(String sql) {
-
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		boolean ret = false;
 		try {
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager
@@ -20,26 +18,13 @@ public class DBUtil {
 							"pbbnglrgsfpbso", "3VGLI4DZIDZGYOp4uwaU9oBbg1");
 			preparedStatement = connection.prepareStatement(sql);
 			int result = preparedStatement.executeUpdate();
-
 			if (result == 1) {
-				// Add a log statment taht the record is inserted succesfully
-				// System.out.println("Result >>>>>>>>>>>>>>> "+result);
-				return true;
-			} else {
-				// Add a log statment taht the record is not inserted
-				// succesfully
-				// System.out.println("Result >>>>>>>>>>>>>>> "+result);
-				return false;
+				ret = true;
 			}
-
-		} catch (SQLException e) {
-			// System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-			return false;
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return true;
+		return ret;
 	}
 
 	public static String fetchFromDB(String sql) {
@@ -55,29 +40,21 @@ public class DBUtil {
 							"pbbnglrgsfpbso", "3VGLI4DZIDZGYOp4uwaU9oBbg1");
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
-
 			while (resultSet.next()) {
-
-				String lastColumn = "";
 				try {
-					lastColumn = resultSet.getString(5);
 					response = resultSet.getString(1) + ","
 							+ resultSet.getString(2) + ","
 							+ resultSet.getString(3) + ","
 							+ resultSet.getString(4) + ","
 							+ resultSet.getString(5);
-				} catch (SQLException sqlex) {
-					// sqlex.printStackTrace();
-					response = resultSet.getString(1) + ","
-							+ resultSet.getString(2) + ","
-							+ resultSet.getString(3) + ","
-							+ resultSet.getString(4);
+				} catch (Exception e) {
+					response = "";
+					e.printStackTrace();
+					break;
 				}
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
+			response = "";
 			e.printStackTrace();
 		}
 		return response;
