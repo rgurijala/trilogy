@@ -21,6 +21,8 @@ public class DBUtil {
 			if (result == 1) {
 				ret = true;
 			}
+			preparedStatement.close();
+			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,6 +55,9 @@ public class DBUtil {
 					break;
 				}
 			}
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
 		} catch (Exception e) {
 			response = "";
 			e.printStackTrace();
